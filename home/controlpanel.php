@@ -1,19 +1,51 @@
+<?php
+
+@session_start();
+include "../database_connection/dbconnect.php";
+
+unset($_SESSION['logstatus']);
+$db = new startech_connection();
+if(isset($_POST["admin_login"])){
+	   	$user_name=$_POST["admin_email"];
+		$user_pass=$_POST["admin_password"];
+	    if(!empty($user_name) && !empty($user_pass)){
+		    $sql=$db->link->query("SELECT * FROM  `create_admin`  where `email`='{$user_name}' AND `password`='{$user_pass}'");
+
+		    if($sql->num_rows>0)
+		    {	
+		    	$_SESSION['logstatus']=1;
+		    	$_SESSION['admin_email'] = '{$user_name}';
+		        echo "<script>location='../admin/'</script>";
+		    }
+		    else
+		    {
+		        echo "Invalid Username or Password";
+		    }
+		}
+ }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Startech</title>
-	<link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-	<link rel="stylesheet" type="text/css" href="assets/webfonts/all.min.css">
+	<link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
+	<link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/slick.css">
+	<link rel="stylesheet" type="text/css" href="../assets/webfonts/all.min.css">
 	<link rel="stylesheet" href="https://fonts.maateen.me/adorsho-lipi/font.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.6.22/css/uikit.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
 <body>
 	<div class="container-fluid p-0">
 		<!-- This is header -->
@@ -58,7 +90,7 @@
 											<div id="flush-collapse2" class="accordion-collapse collapse show" aria-labelledby="flush-heading2" data-bs-parent="#accordionFlushExample">
 												<div class="accordion-body">
 													<ul class="navbar-nav">
-														<li class="nav-item"><a href="#" class="nav-link">&nbsp;&nbsp;All Laptop</a></li>
+														<li class="nav-item"><a href="category.php" class="nav-link">&nbsp;&nbsp;All Laptop</a></li>
 														<li class="nav-item"><a href="#" class="nav-link">&nbsp;&nbsp;Gaming Laptop</a></li>
 														<li class="nav-item"><a href="#" class="nav-link">&nbsp;&nbsp;Premium ultrabook</a></li>
 														<li class="nav-item"><a href="#" class="nav-link">&nbsp;&nbsp;Laptop Bag</a></li>
@@ -88,7 +120,7 @@
 							</div>
 						</div>
 						<div class="col-4">
-							<img src="assets/img/logo.png" alt="logo">
+							<img src="../assets/img/logo.png" alt="logo">
 						</div>
 						<div class="col-4">
 							<i class="fas fa-shopping-cart" style="position: absolute; left: 90%; top: 36px;"></i>
@@ -97,7 +129,9 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-2 d-none d-lg-block" style="position: relative;">
-							<img src="assets/img/logo.png" alt="logo" class="p-3 mylogo">
+							<a href="index.php">
+								<img src="../assets/img/logo.png" alt="logo" class="p-3 mylogo">
+							</a>
 						</div>
 						<div class="col-lg-4  d-none d-lg-block">
 							<div class="search">
@@ -112,7 +146,7 @@
 								</span>
 								<span class="d-none d-lg-block">
 									<p>Offers</p>
-									<a href="#"><small class="text-muted" style="margin-top: -15px; font-size: 13px;">Latest Offers</small></a>
+									<a href="?page=offerfront"><small class="text-muted" style="font-size: 13px;">Latest Offers</small></a>
 								</span>
 							</div>
 							<div class="d-flex">
@@ -130,9 +164,9 @@
 								</span>
 								<span class="d-none d-lg-block">
 									<p>Account</p>
-									<small class="text-muted" style=" font-size: 13px;">
-										<a href="register.html">Register</a> or 
-										<a href="login.html">Login</a>
+									<small class="text-muted" style="margin-top: -15px; font-size: 13px;">
+										<a href="?page=register">Register</a> or 
+										<a href="?page=login">Login</a>
 									</small>
 								</span>
 							</div>
@@ -165,7 +199,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropbtn" href="#"z>Laptop</a>
 							<ul class="dropdown-content">
-								<li class="nav-item"><a href="#" class="nav-link">All Laptop</a></li>
+								<li class="nav-item"><a href="?page=category" class="nav-link">All Laptop</a></li>
 								<li class="nav-item"><a href="#" class="nav-link">Gaming Laptop</a></li>
 								<li class="nav-item"><a href="#" class="nav-link">Laptop Bag</a></li>
 								<li class="nav-item"><a href="#" class="nav-link">Laptop Accessories</a></li>
@@ -292,7 +326,7 @@
 							<a class="nav-link dropbtn" href="#">Gaming</a>
 							<ul class="dropdown-content">
 								<li class="nav-item"><a href="#" class="nav-link">Gaming Chair</a></li>
-								<li class="nav-item"><a href="#" class="nav-link">Kyboard</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Keyboard</a></li>
 								<li class="nav-item"><a href="#" class="nav-link">Gaming Pad</a></li>
 							</ul>
 						</li>
@@ -304,70 +338,26 @@
 			</div>
 		</header>
 
-		<!-- This is main section -->
-		<section id="main">
-			<div class="container-fluid">
+		<section class="my-5">
+     		<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-9">
-						<div class="carousel-layer">
-							<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-								  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-								  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-								  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
-								</div>
-								<div class="carousel-inner">
-								  <div class="carousel-item active">
-									<img src="assets/img/caro1.jpg" class="d-block w-100" alt="caro1">
-								  </div>
-								  <div class="carousel-item">
-									<img src="assets/img/caro2.jpg" class="d-block w-100" alt="caro2">
-								  </div>
-								  <div class="carousel-item">
-									<img src="assets/img/caro3.jpg" class="d-block w-100" alt="caro3">
-								  </div>
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-								  <span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-								  <span class="visually-hidden">Next</span>
-								</button>
+					<div class="col-md-4 m-auto">
+						<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+							<h5 style="text-align: center; color: grey;">Startech Admin</h5>
+							<div class="form-group">
+								<label for="admin_email">Email</label>
+								<input type="text" class="form-control mb-2" name="admin_email">
 							</div>
-						</div>
+							<div class="form-group">
+								<label for="admin_password">Password</label>
+								<input type="text" class="form-control mt-1 mb-2" name="admin_password">
+							</div>
+							<button class="btn btn-block mt-1 btn-success" name="admin_login" type="submit">Login</button>
+						</form>
 					</div>
-					<div class="col-lg-3">
-						<div class="compare">
-							<h5>Compare Products</h5>
-							<p class="text-muted">Choose two product to compare</p>
-							<div style="position: relative;">
-								<input type="text" class="form-control" placeholder="Search item">
-								<i class="fas fa-search" style="position: absolute; right: 6%; bottom: 25%; color: rgb(175, 171, 171);"></i>
-							</div>
-							<br>
-							<div style="position: relative;">
-								<input type="text" class="form-control" placeholder="Search item">
-								<i class="fas fa-search" style="position: absolute; right: 6%; bottom: 25%; color: rgb(175, 171, 171);"></i>
-							</div>
-							<button class="w-100 btn btn-block compare-btn my-3">Compare</button>
-						</div>
-						<div class="compare-img d-none d-md-block">
-							<img src="assets/img/caro-side.jpg" alt="#">
-						</div>
-					</div>
-				</div>
-				<div class="container-fluid">
-					<marquee width="100%" direction="left" height="30%">
-						২৫ জুন রোজ শুক্রবার, স্টার টেক এর গাজীপুর, চট্টগ্রাম, খুলনা ও রংপুর শাখা ব্যতীত সকল শাখার কার্যক্রম সকাল ১০টা থেকে রাত ৮টা পর্যন্ত চালু থাকবে। গাজীপুর শাখা লকডাউনের জন্য সন্ধ্যা ৬টা পর্যন্ত খোলা থাকবে। খুলনা শাখায় অনলাইন ডেলিভারি পেতে যোগাযোগ করুন, Desktop- +880 1709-995586, Laptop-01709995585, 01313-717036, Accessories- +880 1313-717100, Service-+880 1313-717165,+880 1313-717161। এছাড়াও আমাদের ৬৪ জেলায় অনলাইন ডেলিভারি চালু আছে।
-					</marquee>
-				</div>
-				<div class="container text-center main-pro-title">
-					<h2>Featured Products</h2>
-					<p class="text-muted">Check & Get Your Desired Product !</p>
 				</div>
 			</div>
-		</section>
-	
+ 		</section>
 
 		<!-- This is footer -->
 		<footer>
@@ -393,7 +383,7 @@
 						<a href="#">
 							<div style="padding-left: 9px;"><i class="fas fa-laptop"></i></div>
 							<div>
-								<small>Pc-builder</small>
+								<small>Pc Builder</small>
 							</div>
 						</a>
 					</li>
@@ -418,7 +408,7 @@
 			<div class="footer">
 				<div class="container">
 					<div class="row pt-2 pb-1 myf">
-						<div class="col-12 col-lg-4 p-5">
+						<div class="col-12 col-lg-4 pt-5">
 							<h6 class="text-muted">Support</h6>
 							<div class="footer-box-layer">
 								<div class="footer-box">
@@ -447,7 +437,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-lg-5 p-5 about-us-section">
+						<div class="col-12 col-lg-5 pt-5 about-us-section">
 							<div class="footer-about-us">
 								<h6 class="text-muted">About us</h6>
 								<div class="row">
@@ -470,7 +460,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12  col-lg-3 py-5">
+						<div class="col-12  col-lg-3 pt-5">
 							<div class="stay-connect-layer">
 								<h6 class="text-muted">Stay Connected</h6>
 							<p style="color: aliceblue; font-size: 14px; font-family: 'Times New Roman', Times, serif; letter-spacing: 1px;">Star tech & Engineering Ltd</p>
@@ -487,16 +477,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="container-fluid py-2 developer" style="border-top: 1px solid rgb(124, 18, 18);">
-					<h6 style="text-align: right;">This site is created for testing purpose. Designed by <a style="color: red; text-decoration: none; display: inline-block;" href="https://www.facebook.com/tareq-v2" target="_blank">Tareq</a></h6>
+				<div class="container-fluid py-2 developer">
+					<h6>This site is created for testing purpose. Designed by <a href="https://www.facebook.com/tareq-v2" target="_blank">Tareq</a></h6>
 				</div>
 			</div>
 		</footer>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.6.22/js/uikit.min.js"></script>
-	<script src="assets/js/jquery-3.5.1.slim.min.js"></script>
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/slick.min.js"></script>
-	<script src="assets/js/script.js"></script>
+	<script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
+	<script src="../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../assets/js/slick.min.js"></script>
+	<script src="../assets/js/script.js"></script>
 </body>
 </html>

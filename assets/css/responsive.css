@@ -23,11 +23,17 @@
    }
    .footer .footer-box-layer{
       position: absolute;
-      left: 20%;
+      left: 15%;
    }
    .footer .fas{
       position: absolute;
       left: 0;
+   }
+   .footer h6{
+      font-size: 8px !important;
+   }
+   .developer a{
+      font-size: 6px !important;
    }
    .footer .fb-1{
       margin-left: 10%;
@@ -45,9 +51,12 @@
    .footer .social-icons i::before{
       padding-left: 0;
    }
-   .developer h6{
-      font-size: 5px;
+   .developer{
+      font-size: 5px !important;
    }
+   .p-detaits.mt-2 {
+      text-align: center;
+  }
  }
 
 
@@ -63,6 +72,48 @@
    .footer{
       text-align: center !important;
       position: relative;
+   }
+   .footer .footer-box-layer{
+      position: absolute;
+      left: 25%;
+   }
+   .footer .fas{
+      position: absolute;
+      left: 0;
+   }
+   .footer .fb-1{
+      margin-left: 10%;
+   }
+   .footer-about-us{
+      margin-top: 38%;
+   }
+   .footer-list{
+      padding-left: 0;
+   }
+   .footer .social-icons{
+      justify-content: center;
+      padding-left: 25px;
+   }
+   .footer .social-icons i::before{
+      padding-left: 0;
+   }
+   .p-detaits.mt-2 {
+      text-align: center;
+  }
+ }
+
+
+/* MEDIUM DEVICE */
+
+@media (min-width: 576px) and (max-width: 767px) { 
+   .mylogo{
+      margin-left: 247px;
+   }
+   .responsive-header{
+      width: 100vw !important;
+   }
+   .footer{
+      text-align: center !important;
    }
    .footer .footer-box-layer{
       position: absolute;
@@ -88,45 +139,9 @@
    .footer .social-icons i::before{
       padding-left: 0;
    }
- }
-
-
-/* MEDIUM DEVICE */
-
-@media (min-width: 576px) and (max-width: 767px) { 
-   .mylogo{
-      margin-left: 247px;
-   }
-   .responsive-header{
-      width: 100vw !important;
-   }
-   .footer{
-      text-align: center !important;
-   }
-   .footer .footer-box-layer{
-      position: absolute;
-      left: 31%;
-   }
-   .footer .fas{
-      position: absolute;
-      left: 0;
-   }
-   .footer .fb-1{
-      margin-left: 10%;
-   }
-   .footer-about-us{
-      margin-top: 38%;
-   }
-   .footer-list{
-      padding-left: 0;
-   }
-   .footer .social-icons{
-      justify-content: center;
-      padding-left: 25px;
-   }
-   .footer .social-icons i::before{
-      padding-left: 0;
-   }
+   .p-detaits.mt-2 {
+      text-align: center;
+  }
  }
 
 
@@ -144,7 +159,7 @@
    }
    .footer .footer-box-layer{
       position: absolute;
-      left: 34%;
+      left: 37%;
    }
    .footer .fas{
       position: absolute;
@@ -166,10 +181,9 @@
    .footer .social-icons i::before{
       padding-left: 0;
    }
-   .footer .footer-box-layer{
-      position: absolute;
-      left: 34%;
-   }
+   .p-detaits.mt-2 {
+      text-align: center;
+  }
  }
 
 /* LARGE DEVICE */
@@ -183,6 +197,10 @@
    }
    #pc-builder{
       display: none !important;
+   }
+   .footer .footer-box-layer{
+      position: absolute;
+      left: 39%;
    }
  }
 
