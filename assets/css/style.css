@@ -16,7 +16,6 @@
     from {color: orange;}
     to {color: var(--root-color);}
 }
-
 body{ 
     position: relative;
     padding: 0;
@@ -555,7 +554,6 @@ header .navbar-nav .nav-link{
     color: #fff;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-    z-index: 99;
     height:0; 
     width:0;
 }
@@ -1221,3 +1219,4 @@ a[target=".details-bottom-nav"]{
     border: none;
 }
 
+#pro-main-layer 

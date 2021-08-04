@@ -8,5 +8,4 @@ session_id($x);
 
 print "<script> location = 'home/'</script>";
 
-
 ?>

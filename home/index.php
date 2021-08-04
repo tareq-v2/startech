@@ -1,8 +1,6 @@
 <?php
 
 @session_start();
-
-
 include("../database_connection/dbconnect.php");
 
 $db = new startech_connection();
@@ -229,74 +227,10 @@ $db = new startech_connection();
 							 } 
 							 ?>
 							<ul class="dropdown-content">
-								<li class="nav-item">
-									<?php
-							    		$selectitem = "SELECT * FROM `category_table` WHERE `category_id` = 1";
-							    		$queryitem = $db->link->query($selectitem);
-							    		if($fetch_item=$queryitem->fetch_array())
-							    		{
-									?>
-									<li class="nav-item dropdown1"><a href="#" class="nav-link"><?php print $fetch_item[1]?></a></li>
-									<?php
-									 } 
-									 ?>
-									<ul class="dropdown-content1">
-										<li class="nav-item"><a href="#" class="nav-link">1</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">2</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">3</a></li>
-									</ul>
-								</li>
-								<li class="nav-item dropdown1">
-									<?php
-							    		$selectitem = "SELECT * FROM `category_table` WHERE `category_id` = 2";
-							    		$queryitem = $db->link->query($selectitem);
-							    		if($fetch_item=$queryitem->fetch_array())
-							    		{
-									?>
-									<li class="nav-item"><a href="#" class="nav-link"><?php print $fetch_item[1]?></a></li>
-									<?php
-									 } 
-									 ?>
-									<ul class="dropdown-content1">
-										<li class="nav-item"><a href="#" class="nav-link">1</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">2</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">3</a></li>
-									</ul>
-								</li>
-								<li class="nav-item dropdown1">
-									<?php
-							    		$selectitem = "SELECT * FROM `category_table` WHERE `category_id` = 3";
-							    		$queryitem = $db->link->query($selectitem);
-							    		if($fetch_item=$queryitem->fetch_array())
-							    		{
-									?>
-									<li class="nav-item"><a href="#" class="nav-link"><?php print $fetch_item[1]?></a></li>
-									<?php
-									 } 
-									 ?>
-									<ul class="dropdown-content1">
-										<li class="nav-item"><a href="#" class="nav-link">1</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">2</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">3</a></li>
-									</ul>
-								</li>
-								<li class="nav-item dropdown1">
-									<?php
-							    		$selectitem = "SELECT * FROM `category_table` WHERE `category_id` = 4";
-							    		$queryitem = $db->link->query($selectitem);
-							    		if($fetch_item=$queryitem->fetch_array())
-							    		{
-									?>
-									<li class="nav-item"><a href="#" class="nav-link"><?php print $fetch_item[1]?></a></li>
-									<?php
-									 } 
-									 ?>
-									<ul class="dropdown-content1">
-										<li class="nav-item"><a href="#" class="nav-link">1</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">2</a></li>
-										<li class="nav-item"><a href="#" class="nav-link">3</a></li>
-									</ul>
-								</li>
+								<li class="nav-item"><a href="?page=category" class="nav-link">All Desktop</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Gaming PC</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">Star PC</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">All In One PC</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">

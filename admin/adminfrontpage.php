@@ -1,4 +1,7 @@
+<?php
+@session_start();
 
+?>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +16,45 @@
 </head>
     <body>
         <div class="front-page-top-layer">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h4>INCOME AND EXPENSES SUMMARY</h4>
+                </div>
+                <div class="col-lg-3">
+                    <div class="container">
+                        <div class="clock-container">
+                            <div>
+                                <span style="margin-left: 28%; margin-bottom: 10px; color: green; font-size: 22px; border-bottom: 1px solid;">Time Now<br></span> 
+                            </div>
+                            <style>
+                                .clock{
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: space-between;
+                                }
+                                .clock p{
+                                    color: red;
+                                }
+                            </style>
+                            <div class="clock">
+                                <div style="display: flex;">
+                                    <p id="hour" style="font-size: 18px;">00</p><span style="margin-top: 2px;">&nbsp;H</span>
+                                </div>
+                                <div style="display: flex;">
+                                    <p id="minute" style="font-size: 15px; margin-top: 3px;">00</p><span style="margin-top: 2px;">&nbsp;m</span>
+                                </div>
+                                <div style="display: flex;">
+                                    <p id="second" style="font-size: 15px; margin-top: 3px;">00</p><span style="margin-top: 2px;">&nbsp;s</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="progress-bar" id="progress"></div>
+                        </div>
+                </div>
+                </div>
+            </div>
             <div class="row mb-2">
-                <h4>INCOME AND EXPENSES SUMMARY</h4>
                 <div class="col-4 ml-0 mt-2">
                     <div class="check">
                         <div class="myCheck"></div>
@@ -103,4 +143,23 @@
         <script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
         <script src="../assets/js/bootstrap.bundle.min.js"></script>
         <script src="./js/admin.js"></script>
+        <script>
+            const hour = document.getElementById("hour");
+            const minute = document.getElementById("minute");
+            const second = document.getElementById("second");
+
+            function myClock(){
+                let date = new Date();
+                let hr = date.getHours();
+                let min = date.getMinutes();
+                let sec = date.getSeconds();
+
+                hour.textContent = hr;
+                minute.textContent = min;
+                second.textContent = sec;
+            }
+
+            setInterval(myClock, 1000)
+
+        </script>
     </body>

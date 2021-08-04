@@ -3,7 +3,6 @@
 
 include("../database_connection/dbconnect.php");
 $db = new startech_connection();
-
 if($_SESSION['logstatus']==1)
 {
 
@@ -23,6 +22,8 @@ if($_SESSION['logstatus']==1)
 	<link rel="stylesheet" type="text/css" href="../assets/css/uikit.min.css">
 	<link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="css/admin-style.css">
+
+
 </head>
 <body>
     <div class="container-fluid">
@@ -39,7 +40,7 @@ if($_SESSION['logstatus']==1)
 					<div>
 						<h6>Welcome to <span style="color: rgba(252, 40, 2, 0.767); font-size: 16px;">startech admin panel</span></h6>
 					</div>
-					<div id="logout-section" onclick="logoutDiv()">
+					<div id="logout-section" style="cursor: pointer;">
 						<div id="profile-pic">
 							<div id="active"></div>
 							<img src="../assets/img/fb.jpg" alt="#">
@@ -48,18 +49,15 @@ if($_SESSION['logstatus']==1)
 					</div>
 					<div id="login-card">
 						<div id="testId">
-							<a onclick="closeCard()"><i class="fas fa-times"></i></a>
+							<a style="cursor: pointer;" onclick="closeCard()"><i class="fas fa-times"></i></a>
 						</div>
 						<div>
 							<img src="../assets/img/fb.jpg" alt="#">
 							<div class="inner-text">
 								<p style="color: green; font-size: 22px;">SBIT</p>
-								<?php
-								$selectAdmin = $db->link->query("SELECT * from `create_admin` where `user_id` = 1");
-								$fetchAdmin = $selectAdmin->fetch_array();
-								?>
-									<small class="text-muted mb-2"><?php print $fetchAdmin[2]; ?></small>
+									<small class="text-muted mb-2"><?php  ?></small>
 								<br>
+								<p><?php include('../home/testing.php'); ?></p>
 								<br>
 								<span>
 									<i class="fas fa-power-off" style="color: rgb(54, 211, 223); margin-left: 3px;"></i>&nbsp;<span style="color: red;"><a style="color: red; text-decoration: none;" href="../home/controlpanel.php">Sign Out</a></span>
@@ -68,6 +66,20 @@ if($_SESSION['logstatus']==1)
 
 						</div>
 					</div>
+					<script>
+						window.addEventListener('DOMContentLoaded', function (){
+							let testing = document.querySelector('#logout-section') 
+							testing.addEventListener('click', function (){
+								let mainCard = document.querySelector('#login-card')
+									mainCard.style.display = 'block'
+							})
+							let closeId = document.querySelector('#testId')
+							closeId.addEventListener('click', function (){
+								let mainCard = document.querySelector('#login-card')
+									mainCard.style.display = 'none'
+							})
+						})
+					</script>
 				</div>
 			</div>
 		</div>
@@ -102,8 +114,11 @@ if($_SESSION['logstatus']==1)
 							<div class="accordion-body" style="background: #6D747A;">
 								<ul>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="addproduct.php" target="framebody">Add product</a></li>
+									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="products.php" target="framebody">Products</a></li>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="viewproduct.php" target="framebody">View product</a></li>
+									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="productSubDescription.php" target="framebody">Add Product Desciption</a></li>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="additems.php" target="framebody">Add Items</a></li>
+									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="addbrand.php" target="framebody">Add Brands</a></li>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="addcategory.php" target="framebody">Add Category</a></li>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="addsubcategory.php" target="framebody">Add Sub-Category</a></li>
 									<li><i class="fab fa-product-hunt"></i><a href="#">&nbsp;&nbsp;<a href="addslider.php" target="framebody">Add Slider</a></li>
@@ -143,7 +158,7 @@ if($_SESSION['logstatus']==1)
 	<script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
 	<script src="../assets/js/uikit.min.js"></script>
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script src="./js/admin.js"></script>
+	<script src="js/admin.js"></script>
 </body>
 </html>
 <?php

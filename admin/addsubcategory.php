@@ -132,7 +132,7 @@ if($_SESSION['logstatus']==1)
 				</div>
 				<div class="col-10">
 					<select name="item_name" class="form-control">
-						<option>Select Item Name</option>
+						<option>Select Name</option>
 						<?php
 						$selectItem = $db->link->query("SELECT * from `item_table`");
 						while($fetchItem = $selectItem->fetch_array()){

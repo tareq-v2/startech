@@ -74,40 +74,78 @@ if($_SESSION['logstatus']==1)
 	</div>
     <table class="table table-bordered">
         <tr>
-                <td>SL</td>
-                <td>Item Name</td>
-                <td>Category Name</td>
-                <td>Sub-Category Name</td>
-                <td>Brand name</td>
-                <td>Product Name</td>
-                <td>Description</td>
-                <td>Sale price</td>
-                <td>Mesurement</td>
-                <td>Image</td>
-                <td>Action</td>
+            <td>Product ID</td>
+            <td>Product Name</td>
+            <td>Item Name</td>
+            <td>Brand Name</td>
+            <td>Category name</td>
+            <td>Sub-category Name</td>
+            <td>Price</td>
+            <td>Regular price</td>
+            <td>Status</td>
+            <td>Processor</td>
+            <td>Display</td>
+            <td>Memory</td>
+            <td>Storage</td>
+            <td>graphics</td>
+            <td>operating System</td>
+            <td>Keyboard</td>
+            <td>Optical Drive</td>
+            <td>WebCam</td>
+            <td>Wi-Fi</td>
+            <td>Bluetooth</td>
+            <td>Slots</td>
+            <td>Height</td>
+            <td>Width</td>
+            <td>Depth</td>
+            <td>Weight</td>
+            <td>Color</td>
+            <td>Warrenty</td>
+            <td>Description</td>
+            <td>Image</td>
+            <td>Action</td>
         </tr>
         <?php
-                $sql=$db->link->query("SELECT * FROM product_table");
-                while($fetch=$sql->fetch_array())
-                {?>
-                    <tr>
-                            <td><?php echo $fetch[0];?></td>
-                            <td><?php echo $fetch[1];?></td>
-                            <td><?php echo $fetch[2];?></td>
-                            <td><?php echo $fetch[3];?></td>
-                            <td><?php echo $fetch[4];?></td>
-                            <td><?php echo $fetch[5];?></td>
-                            <td><?php echo $fetch[6];?></td>
-                            <td><?php echo $fetch[7];?></td>
-                            <td><?php echo $fetch[8];?></td>
-                            <td><img src="img/productimg/<?php echo $fetch[0];?>.jpg" height="50" width="50"></td>
-                            <td>
-                                <a href="addproduct.php?edit=<?php echo $fetch[0];?>" class="btn btn-info">Edit</a>
-                                <a onclick="compareCart()" role="button" class="btn btn-danger">Delete</a>
-                            </td>
-                    </tr>
-                    <?php
-                }
+        $sql=$db->link->query("SELECT * FROM product");
+        while($fetch=$sql->fetch_array())
+        {?>
+        <tr>
+            <td><?php echo $fetch[0];?></td>
+            <td><div style="height: 80px; overflow-y: scroll;"><?php echo $fetch[1];?></div></td>
+            <td><?php echo $fetch[2];?></td>
+            <td><?php echo $fetch[3];?></td>
+            <td><?php echo $fetch[4];?></td>
+            <td><?php echo $fetch[5];?></td>
+            <td><?php echo $fetch[6];?></td>
+            <td><?php echo $fetch[7];?></td>
+            <td><?php echo $fetch[8];?></td>
+            <td><?php echo $fetch[9];?></td>
+            <td><?php echo $fetch[10];?></td>
+            <td><?php echo $fetch[11];?></td>
+            <td><?php echo $fetch[12];?></td>
+            <td><?php echo $fetch[13];?></td>
+            <td><?php echo $fetch[14];?></td>
+            <td><?php echo $fetch[15];?></td>
+            <td><?php echo $fetch[16];?></td>
+            <td><?php echo $fetch[17];?></td>
+            <td><?php echo $fetch[18];?></td>
+            <td><?php echo $fetch[19];?></td>
+            <td><?php echo $fetch[20];?></td>
+            <td><?php echo $fetch[21];?></td>
+            <td><?php echo $fetch[22];?></td>
+            <td><?php echo $fetch[23];?></td>
+            <td><?php echo $fetch[24];?></td>
+            <td><?php echo $fetch[25];?></td>
+            <td><?php echo $fetch[26];?></td>
+            <td><div style="height: 80px; overflow-y: scroll;"><?php echo $fetch[27];?></div></td>
+            <td><img src="img/productimg/<?php echo $fetch[0];?>.jpg" height="50" width="50"></td>
+            <td>
+                <a href="products.php?edit=<?php echo $fetch[0];?>" class="btn btn-info">Edit</a>
+                <a onclick="deleteProduct()" role="button" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+            <?php
+        }
         ?>
     </table>
     <div id="deleteSpan">
@@ -115,10 +153,10 @@ if($_SESSION['logstatus']==1)
             <h6>Are you sure, you want to delete this item?</h6>
             <div style="position: absolute; left: 26%; top: 100%;">
                 <?php
-                $sql=$db->link->query("SELECT * FROM product_table");
+                $sql=$db->link->query("SELECT * FROM product");
                 if($fetch=$sql->fetch_array())
                 {?>
-                <a href="addproduct.php?del=<?php echo $fetch[0];?>" class="spanbtn btn-warning">Delete</a>
+                <a href="products.php?del=<?php echo $fetch[0];?>" class="spanbtn btn-warning">Delete</a>
                 <?php
                     }
                 ?>
@@ -127,26 +165,24 @@ if($_SESSION['logstatus']==1)
         </div>
     </div>
    </div>
-
-    
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.6.22/js/uikit.min.js"></script>
 	<script src="../assets/js/jquery-3.5.1.slim.min.js"></script>
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script src="./js/admin.js"></script>
     <script>
-    function compareCart() {
-        let cart = document.getElementById("deleteSpan");
-        if (cart.style.display === "none") {
-          cart.style.display = "block";
-        } else {
-          cart.style.display = "none";
+    
+    function deleteProduct() {
+        let deleteSpan = document.getElementById("deleteSpan");
+        if (deleteSpan.style.display === "none") {
+          deleteSpan.style.display === "block";
         }
       }
 
     function closeDeleteBtn(){
-        let cart = document.getElementById("deleteSpan");
-        if (cart.style.display === "block") {
-          cart.style.display = "none";
+        let deleteSpan = document.getElementById("deleteSpan");
+        if (deleteSpan.style.display === "block") {
+          deleteSpan.style.display === "none";
         }
     }
     </script>

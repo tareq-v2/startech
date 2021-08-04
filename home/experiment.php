@@ -17,11 +17,28 @@
 </head>
 <body>
 	<div class="container-fluid">	
-			<!-- This is main section -->
-		
+			<form>
+				<input type="text" id="task" placeholder="New Task">
+				<button type="submit">Add</button>
+			</form>
+		<ul id="tasks">
+			<h6>Tasks</h6>
+		</ul>
 	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelector('form').onsubmit = () => {
+				const task = document.querySelector('#task').value;
+
+				let li = document.createElement('li');
+				li.innerHTML = task;
+				document.querySelector('#tasks').append(li);
+			}
+		})
+	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.6.22/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>	<script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 	<script src="assets/js/slick.min.js"></script>
 	<script src="assets/js/script.js"></script>
 </script>

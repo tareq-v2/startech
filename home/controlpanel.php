@@ -1,5 +1,4 @@
-<?php
-
+ <?php
 @session_start();
 include "../database_connection/dbconnect.php";
 
@@ -14,7 +13,7 @@ if(isset($_POST["admin_login"])){
 		    if($sql->num_rows>0)
 		    {	
 		    	$_SESSION['logstatus']=1;
-		    	$_SESSION['admin_email'] = '{$user_name}';
+		    	$_SESSION['admin_email'] = $user_name;
 		        echo "<script>location='../admin/'</script>";
 		    }
 		    else
@@ -22,12 +21,8 @@ if(isset($_POST["admin_login"])){
 		        echo "Invalid Username or Password";
 		    }
 		}
- }
-
-
+ 	}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

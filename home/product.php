@@ -1,15 +1,50 @@
+<?php
+@session_start();
+$sql="SELECT * FROM `product` where product_id = '".$_GET["id"]."'";
+	$query=$db->link->query($sql);
+	$product = $query->fetch_array();
 
+?>
 
+		<style type="text/css">
+			#confirm-card{
+			    position: fixed; 
+			    left: 28%; 
+			    top: 4%; 
+			    width: 800px; 
+			    height: 200px;
+			    padding: 15px 10px;
+			    background-color: #f1f1f1;
+			    border: 1px solid #000;
+				display: none;
+			}
+		</style>
 		<section id="pro-main-layer">
+			<div>
+				<div id="confirm-card">
+					<div class="row">
+						<div class="col-10">
+							<div>
+								<span><i class="fas fa-times"></i></span>
+							<span><p>You have added <span style="color: orange;">Apple iMac 24" 4K Retina Display M1 8 Core CPU, 8 Core GPU, 256GB SSD, Green (MGPH3ZP/A) 2021</span> to your shopping cart!</p></span>
+							</div>
+							<div class="d-flex;">
+								<button>View Cart</button>
+								<button>Confirm Order</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="pro-front-layer">
 				<div class="container-fluid px-4">
 					<div class="row">
 						<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 							<ol class="breadcrumb">
 							  <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
-							  <li class="breadcrumb-item"><a href="#">product</a></li>
-							  <li class="breadcrumb-item"><a href="#">Premium ultrabook</a></li>
-							  <li class="breadcrumb-item active" aria-current="page">Laptop</li>
+							  <li class="breadcrumb-item"><a href="#"><?php print $product[3] ?></a></li>
+							  <li class="breadcrumb-item"><a href="#"><?php print $product[5] ?></a></li>
+							  <li class="breadcrumb-item active" aria-current="page"><?php print $product[2] ?></li>
 							</ol>
 						  </nav>
 					</div>
@@ -43,7 +78,7 @@
 					<div class="row px-5">
 						<div class="col-12 col-lg-5 p-5">
 							<a data-bs-toggle="modal" data-bs-target="#exampleModal">
-								<img src="../assets/img/fpro1.jpg" style="width: 120%;" alt="#">
+								<img src="../admin/img/productimg/<?php print $product[0] ?>.jpg" style="width: 120%;" alt="#">
 							</a>
 								<button type="button" class="all-img-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 									See all image
@@ -83,13 +118,13 @@
 						</div>
 						<div class="col-12 col-lg-7">
 							<div class="product-summary">
-								<h1>Lenovo Yoga 9 14ITL5 Core i7 11th Gen 14” Full HD Touch Laptop</h1>
+								<h1><?php print $product[1] ?></h1>
 								<ul class="ul1">
-									<li><span>Price : <b style="font-size: 11px; color: #000;">199,000৳</b></span></li>
-									<li><span>Regular price : <b style="font-size: 11px; color: #000;">204,600৳</b></span></li>
-									<li><span>Status : <b>In stock</b></span></li>
-									<li><span>product Code : <b>xxx</b></span></li>
-									<li><span>Brand : <b>Lenovo</b></span></li>
+									<li><span>Price : <b style="font-size: 11px; color: #000;"><?php print $product[6] ?>৳</b></span></li>
+									<li><span>Regular price : <b style="font-size: 11px; color: #000;"><?php print $product[7] ?>৳</b></span></li>
+									<li><span>Status : <b><?php print $product[8] ?></b></span></li>
+									<li><span>product Code : <b><?php print $product[0] ?></b></span></li>
+									<li><span>Brand : <b><?php print $product[3] ?></b></span></li>
 								</ul>
 								<h3>Key Features</h3>
 								<ul class="ul2"> 
@@ -196,7 +231,7 @@
 										Processor
 									</td>
 									<td class="value">
-										Intel Core i7-1185G7 Processor (12M Cache, 3.00 GHz up to 4.80 GHz)
+										<?php print $product[9] ?>
 									</td>
 								</tr>
 								<tr class="common-description">
@@ -204,19 +239,23 @@
 										Display
 									</td>
 									<td class="value">
-										14″ FHD (1920×1080) IPS 400nits Glossy, Glass, 72% NTSC, Dolby Vision, Multi-touch
+										<?php print $product[10] ?>
 									</td>
 								</tr>
 								<tr class="common-description">
 									<td class="name">
-										Memory</td><td class="value">16GB Soldered LPDDR4x-4266 Ram</td>
+										Memory
+									</td>
+									<td class="value">
+										<?php print $product[11] ?>
+									</td>
 								</tr>
 								<tr class="common-description">
 									<td class="name">
 										Storage
 									</td>
 									<td class="value">
-										1TB M.2 2280 PCIe 3.0×4 NVMe SSD<br>
+										<?php print $product[12] ?><br>
 									</td>
 								</tr>
 								<tr class="common-description">
@@ -224,7 +263,7 @@
 										Graphics
 									</td>
 									<td class="value">
-										Integrated Intel Iris Xe Graphics
+										<?php print $product[13] ?>
 									</td>
 								</tr>
 								<tr class="common-description">
@@ -232,7 +271,7 @@
 										Operating System
 									</td>
 									<td class="value">
-										Windows 10 Home
+										<?php print $product[14] ?>
 									</td>
 								</tr>
 								<tr>
@@ -255,7 +294,7 @@
 										Keyboard
 									</td>
 									<td class="value">
-										Backlit, English Keyboard
+										<?php print $product[15] ?>
 									</td>
 								</tr>
 								<tr>
@@ -263,7 +302,7 @@
 										WebCam
 									</td>
 									<td class="value">
-										1M webcam
+										<?php print $product[16] ?>
 									</td>
 								</tr>                            
 							</tbody>			
@@ -280,7 +319,7 @@
 										Wi-Fi
 									</td>
 									<td class="value">
-										WiFi 6 (2×2 802.11ax)
+										<?php print $product[18] ?>
 									</td>
 								</tr>
 								<tr>
@@ -288,7 +327,7 @@
 										Bluetooth
 									</td>
 									<td class="value">
-										Bluetooth 5.1
+										<?php print $product[19] ?>
 									</td>
 								</tr> 
 							</tbody>
@@ -305,7 +344,7 @@
 										USB (s)
 									</td>
 									<td class="value">
-										USB-A 3.2 Gen 2<br>2 x USB-C 3.2 Gen 2 (Thunderbolt 4, DisplayPort™ &amp; power delivery)
+										<?php print $product[20] ?><br>2 x USB-C 3.2 Gen 2 (Thunderbolt 4, DisplayPort™ &amp; power delivery)
 									</td>
 								</tr>
 								<tr class="common-description">
@@ -354,7 +393,7 @@
 										Dimensions (W x D x H)
 									</td>
 									<td class="value">
-										319.4mm x 14.6 – 15.7mm x 216.4mm
+										<?php print $product[21] ?> x <?php print $product[22] ?> x <?php print $product[23] ?>
 									</td>
 								</tr>
 								<tr class="common-description">
@@ -362,7 +401,7 @@
 										Weight
 									</td>
 									<td class="value">
-										1.37kg
+										<?php print $product[24] ?>
 									</td>
 								</tr>
 								<tr>
@@ -370,7 +409,7 @@
 										Color(s)
 									</td>
 									<td class="value">
-										Mica Color
+										<?php print $product[25] ?>
 									</td>
 								</tr>                            
 							</tbody>	
@@ -387,7 +426,7 @@
 										Manufacturing Warranty
 									</td>
 									<td class="value">
-										01 Year International Limited Warranty (Terms &amp; condition Apply As Per Lenovo)
+										<?php print $product[26] ?>
 									</td>
 								</tr>                            
 							</tbody>	
@@ -395,8 +434,8 @@
 						</div>
 						<div class="pro-details-left-layer">
 							<h2>Descriptions</h2>
-							<h4 class="text-muted">Lenovo Yoga 9 14ITL5 Core i7 11th Gen 14” Full HD Touch Laptop</h4>
-							<p>Lenovo Yoga 9 14ITL5 Touch Laptop comes with Intel Core i7-1185G7 Processor (12M Cache, 3.00 GHz up to 4.80 GHz), 16GB Soldered LPDDR4x-4266 Ram, 1TB SSD M.2 2280 PCIe 3.0×4 NVMe, Integrated Intel Iris Xe Graphics, 14″ FHD (1920×1080) IPS 400nits Glossy, Glass, 72% NTSC, Dolby Vision, Multi-touch Display. This Laptop featured with 1M webcam, Windows 10 Home Operation System, 4 Cell battery, Backlit English Keyboard. Here, WiFi 6 (2×2 802.11ax) and Bluetooth 5.1 wireless and networking connectivity are also available. This Asus Touch laptop also has USB-A 3.2 Gen 2, 2 x USB-C 3.2 Gen 2 (Thunderbolt 4, DisplayPort & power delivery), Headphone / mic combo. The latest Lenovo Yoga 9 Touch Laptop has 01 Year International Limited Warranty (Terms & condition Apply As Per Lenovo).</p>
+							<h4 class="text-muted"><?php print $product[1] ?></h4>
+							<p><?php print $product[27] ?></p>
 						</div>
 						<div class="pro-details-left-layer pro-ques-div">
 							<div class="ques-header">

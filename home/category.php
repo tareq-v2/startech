@@ -111,6 +111,11 @@
 			    margin: 10px 15px 0 0;
 			    border-radius: 3px;
 			}
+			.category-card a{
+				display: inline;
+				color: inherit;
+				text-decoration: none;
+			}
 			.category-card:hover{
 			    box-shadow: 0px 0px 10px #e8dfdf;
 			}
@@ -165,6 +170,9 @@
 			    cursor: pointer;
 			    justify-content: center;
 			    align-content: center;
+			}
+			.category-card .span-1{
+				padding: 0 8px !important;
 			}
 			.category-card .span-1:hover{
 			    background: rgb(63, 84, 199);
@@ -320,73 +328,35 @@
 								</div>
 								<div class="container-fluid p-0">
 									<div class="row">
+										<?php
+								    		$sql="SELECT * FROM `product` limit 8";
+								    		$query=$db->link->query($sql);
+								    		while($fetch_product=$query->fetch_array())
+								    		{
+										?>
 										<div class="col-lg-3 category-card-layer" style="padding-left: 2px;">
 											<div class="category-card">
-												<img src="../assets/img/fpro24.jpg" alt="#">
-												<h4 class="p-item-name"><a href="#">Microsoft Surface ARC Bluetooth Mouse</a></h4>
+												<img src="../admin/img/productimg/<?php print $fetch_product[0] ?>.jpg" alt="#">
+												<h4 class="p-item-name"><a href="index.php?page=product&id=<?php print $fetch_product[0] ?>"><?php print $fetch_product[1] ?></a></h4>
 												<ul>
-													<li>Wireless Bluetooth Mouse</li>
-													<li>Wireless: Bluetooth 4.0</li>
-													<li>Wireless technology: 2.4GHz</li>
-													<li>Wireless distance: 10m</li>
+													<li><?php print $fetch_product[10] ?></li>
+													<li><?php print $fetch_product[11] ?></li>
+													<li><?php print $fetch_product[13] ?></li>
+													<li><?php print $fetch_product[14] ?></li>
 												</ul>
-												<h5>10,500৳</h5>
-												<span class="span-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Buy Now</i></span>
+												<h5><?php print $fetch_product[6] ?>৳</h5>
+												<span class="span-1"><a href="product.php?id=<?php print $fetch_product[0] ?>"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Buy Now</i></a></span>
 												
 												<span class="span-2"><i class="fas fa-atom">&nbsp;&nbsp;Add to Compare</i></span>
 												<br>
 											</div>
 										</div>
-										<div class="col-lg-3">
-											<div class="category-card">
-												<img src="../assets/img/fpro25.jpg" alt="#">
-												<h4 class="p-item-name"><a href="#">Microsoft Surface Pro Signature Type Cover Ice Blue</a></h4>
-												<ul>
-													<li>Full QWERTY keyboard, compact design</li>
-													<li>Large Glass Trackpad</li>
-													<li>Alcantara Surface</li>
-												</ul>
-												<h5>15,000৳</h5>
-												<span class="span-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Buy Now</i></span>
-												
-												<span class="span-2"><i class="fas fa-atom">&nbsp;&nbsp;Add to Compare</i></span>
-												<br>
-											</div>
-										</div>
-										<div class="col-lg-3">
-											<div class="category-card">
-												<img src="../assets/img/fpro26.jpg" alt="#">
-												<h4 class="p-item-name"><a href="#">Microsoft Surface Pro Signature Type Cover Poppy Red</a></h4>
-												<ul>
-													<li>Full QWERTY keyboard, compact design</li>
-													<li>Mechanical Keyset & LED Backlit Keys</li>
-													<li>Large Glass Trackpad</li>
-												</ul>
-												<h5>15,000৳</h5>
-												<span class="span-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Buy Now</i></span>
-												<span class="span-2"><i class="fas fa-atom">&nbsp;&nbsp;Add to Compare</i></span>
-												<br>
-											</div>
-										</div>
-										<div class="col-lg-3">
-											<div class="category-card">
-												<img src="../assets/img/fpro27.jpg" alt="#">
-												<h4 class="p-item-name"><a href="#">Microsoft Surface Pro Type Cover Keyboard - Black</a></h4>
-												<ul>
-													<li>Supported platforms Surface Pro</li>
-													<li>Moving (mechanical) keys</li>
-													<li>Interface Magnetic</li>
-													<li>Sensors Accelerometer</li>
-												</ul>
-												<h5>10,500৳</h5>
-												<span class="span-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Buy Now</i></span>
-												
-												<span class="span-2"><i class="fas fa-atom">&nbsp;&nbsp;Add to Compare</i></span>
-												<br>
-											</div>
-										</div>
+										<?php
+								    		}
+								    	?>
+
 									</div>
-									<div class="row">
+									<!-- <div class="row">
 										<div class="col-lg-3" style="padding-left: 2px;">
 											<div class="category-card">
 												<img src="../assets/img/fpro28.jpg" alt="#">
@@ -452,7 +422,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+ -->								</div>
 							</div>
 						</div>
 					</div>
